@@ -5855,7 +5855,9 @@ var propTypes$4 = {
     canActivate: propTypes.oneOfType([propTypes.func, propTypes.array])
   }).isRequired).isRequired,
   loading: propTypes.oneOfType([propTypes.bool, propTypes.func]),
-  hashMode: propTypes.bool
+  hashMode: propTypes.bool,
+  basename: propTypes.string,
+  history: propTypes.object
 };
 
 var defaultProps$3 = {
@@ -5867,13 +5869,14 @@ function RouterGuard(props) {
   var config = props.config,
       loading = props.loading,
       hashMode = props.hashMode,
-      basename = props.basename;
+      basename = props.basename,
+      history = props.history;
 
-  var history = browserHistory(hashMode);
+  var appHistory = history || browserHistory(hashMode);
 
   return React.createElement(
     BrowserRouter,
-    { history: history, basename: basename },
+    { history: appHistory, basename: basename },
     React.createElement(
       DataContext.Provider,
       { value: { loading: loading } },
