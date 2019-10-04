@@ -5870,7 +5870,7 @@ function RouterGuard(props) {
 
   return React.createElement(
     BrowserRouter,
-    { history: appHistory, basename: basename },
+    { history: appHistory, basename: basename, forceRefresh: true },
     React.createElement(
       DataContext.Provider,
       { value: { loading: loading } },
